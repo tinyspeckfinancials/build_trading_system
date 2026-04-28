@@ -1,1 +1,1 @@
-"# build_trading_system" 
+# build_trading_system
