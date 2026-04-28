@@ -1,167 +1,159 @@
-# Build_Trading_System
-------------------------------------------------------------------------------------------------------------------
-# Trading System Specification
+# 📈 Beginner Trading System (Python)
 
-## Overview
+Build your first **automated trading system** using a simple 5-layer architecture:
 
-This document defines a simple 5-layer architecture for building a first automated trading system:
 **Data → Signal → Backtest → Risk → Execution**
 
-Each layer has clearly defined inputs, outputs, and dependencies to ensure modular, testable, and scalable design.
+This project is designed for:
+
+* Beginners in trading + Python
+* Traders who want structured systems
+* Content creators building in public
 
 ---
 
-## 1. Data Layer
+## 🚀 What This Project Does
 
-### Purpose
+This is a **minimal, working trading system** that:
 
-Responsible for collecting, cleaning, and storing market data required for strategy development and execution.
-
-### Inputs
-
-* Raw market data (OHLCV)
-* Symbols list (e.g., NIFTY stocks)
-* Timeframe (e.g., 1-minute, daily)
-
-### Outputs
-
-* Cleaned and structured DataFrame
-* Stored data (SQLite database / CSV)
-
-### Dependencies
-
-* Data source (API like Zerodha Kite, Yahoo Finance, etc.)
-* Storage system (SQLite preferred)
-
-### Python Libraries
-
-* `pandas` (data manipulation)
-* `sqlite3` (storage)
-* `requests` / broker API SDK
+✔ Loads historical price data
+✔ Generates buy/sell signals (Moving Average strategy)
+✔ Backtests strategy performance
+✔ Applies basic risk management
+✔ Simulates trade execution
 
 ---
 
-## 2. Signal Layer
+## 🧠 System Architecture
 
-### Purpose
-
-Generates buy/sell signals based on technical indicators or rules.
-
-### Inputs
-
-* Clean OHLCV data (from Data Layer)
-
-### Outputs
-
-* Signal column (Buy = 1, Sell = -1, Hold = 0)
-* Feature columns (indicators)
-
-### Dependencies
-
-* Indicator calculations
-* Strategy logic
-
-### Python Libraries
-
-* `pandas`
-* `ta` or `pandas\\\_ta` (technical indicators)
-* `numpy`
+```
+Data Layer       → Collect & store market data
+Signal Layer     → Generate trading signals
+Backtest Layer   → Evaluate past performance
+Risk Layer       → Manage capital & position sizing
+Execution Layer  → Simulate order placement
+```
 
 ---
 
-## 3. Backtest Layer
+## 📁 Project Structure
 
-### Purpose
-
-Simulates historical trades to evaluate strategy performance.
-
-### Inputs
-
-* Price data
-* Signals
-
-### Outputs
-
-* Trade log
-* Equity curve
-* Performance metrics (CAGR, drawdown, win rate)
-
-### Dependencies
-
-* Signal logic
-* Historical data completeness
-
-### Python Libraries
-
-* `pandas`
-* `numpy`
-* Optional: `vectorbt`, `backtrader` (for advanced use)
+```
+trading_system/
+│
+├── data/
+│   ├── raw_data.csv
+│   └── market_data.db
+│
+├── docs/
+│   └── system_spec.md
+│
+├── src/
+│   ├── data_layer.py
+│   ├── signal_layer.py
+│   ├── backtest_layer.py
+│   ├── risk_layer.py
+│   ├── execution_layer.py
+│
+├── main.py
+└── config.py
+```
 
 ---
 
-## 4. Risk Layer
+## ⚙️ Installation
 
-### Purpose
+1. Clone the repo:
 
-Controls position sizing, capital allocation, and risk exposure.
+```
+git clone https://github.com/your-username/trading-system.git
+cd trading-system
+```
 
-### Inputs
+2. Install dependencies:
 
-* Signals
-* Account capital
-* Risk rules (e.g., 1% per trade)
-
-### Outputs
-
-* Position size
-* Stop-loss / target levels
-* Adjusted signals (filtered by risk)
-
-### Dependencies
-
-* Strategy rules
-* Capital constraints
-
-### Python Libraries
-
-* `pandas`
-* `numpy`
+```
+pip install pandas numpy
+```
 
 ---
 
-## 5. Execution Layer
+## ▶️ How to Run
 
-### Purpose
+1. Add your price data:
 
-Executes trades in live or paper trading environment.
+```
+data/raw_data.csv
+```
 
-### Inputs
+Expected format:
 
-* Final signals (after risk management)
-* Position sizing info
+```
+date,open,high,low,close,volume
+```
 
-### Outputs
+2. Run the system:
 
-* Orders placed (buy/sell)
-* Execution logs
-
-### Dependencies
-
-* Broker API (Zerodha, etc.)
-* Network reliability
-
-### Python Libraries
-
-* Broker SDK (e.g., `kiteconnect`)
-* `logging`
+```
+python main.py
+```
 
 ---
 
-## Notes
+## 📊 Strategy Used
 
-* Each layer should be independently testable.
-* Prefer storing intermediate outputs (especially signals and trades) for debugging.
-* Start simple, then optimize incrementally.
-* Use SQLite for easy integration with Python and backtesting workflows.
+Basic **Moving Average Crossover**:
+
+* Buy when price crosses above MA
+* Sell when price crosses below MA
+
+This is intentionally simple for learning purposes.
 
 ---
+
+## ⚠️ Disclaimer
+
+This project is for **educational purposes only**.
+Do NOT use this directly for live trading without proper validation.
+
+---
+
+## 🛠 Future Improvements
+
+* Add RSI, VWAP, multi-indicator strategies
+* Use 1-minute intraday data (SQLite)
+* Add brokerage, slippage in backtest
+* Connect to broker API for live trading
+* Build dashboard for performance tracking
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome.
+If you have ideas to improve the system, feel free to contribute.
+
+---
+
+## ⭐ Support
+
+If you found this helpful:
+
+* Star the repo ⭐
+* Share with other traders
+* Follow for more trading + automation content
+
+- https://www.instagram.com/tinyspeckfinancials
+- https://www.threads.com/@tinyspeckfinancials
+- http://www.youtube.com/@TinySpeckFinancials
+- https://x.com/TinySpeckFin
+
+---
+
+## 📩 Get the Next Version
+
+Working on:
+👉 Multi-indicator weighted strategy
+👉 Advanced backtesting engine
+
+Follow me to stay updated 🚀
